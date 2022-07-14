@@ -1,0 +1,123 @@
+﻿<Window x:Class="TicTacToe.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TicTacToe"
+        mc:Ignorable="d"
+        Title="Tic-Tac-Toe" Height="450" Width="800"
+        FontFamily="Segoe UI Light"
+        Background="{StaticResource BackgroundColor}"
+        WindowStartupLocation="CenterScreen">
+    <Viewbox>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="TopPanel" Background="#121212" Height="auto" Width="auto">
+                <StackPanel x:Name="TurnPanel"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left"                    
+                    Width="100"
+                    Height="50">
+                    <TextBlock FontSize="20"
+                       Text=" Player:"
+                       Margin="0,10,0,10"                       
+                       Foreground="FloralWhite"/>
+                    <Image x:Name="PlayerImage"
+                   Source="Assets/X15.png"
+                   Margin="8,0,0,0"
+                   Height="25"/>
+                </StackPanel>
+
+                <TabPanel x:Name="PlayerInfo"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Width="200"
+                        Margin="126,0,0,0">
+                    <Button x:Name="XButton" Style="{StaticResource RoundedButtonsNoMouseOver}" >
+                        <Button.Content>
+                            <StackPanel>
+                                <TextBlock x:Name="xStreakCount" Padding="15,0,0,0" Text=" X - " />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Separator Width="40" Background="Transparent"/>
+                    <Button x:Name="OButton" Style="{StaticResource RoundedButtonsNoMouseOver}" >
+                        <Button.Content>
+                            <StackPanel>
+                                <TextBlock x:Name="oStreakCount" Padding="15,0,0,0" Text=" O - " />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+
+                </TabPanel>
+            </Grid>
+
+            <Canvas x:Name="GameCanvas"
+                Grid.Row="1"
+                Width="300"
+                Height="300"
+                 Margin="20">
+                <UniformGrid x:Name="GameGrid"
+                         Width="300"
+                         Height="300"
+                         Rows="3"
+                         Columns="3"
+                         MouseDown="GameGrid_MouseDown">
+                    <UniformGrid.Background>
+                        <ImageBrush ImageSource="Assets/Grid.png" />
+                    </UniformGrid.Background>
+                </UniformGrid>
+
+                <Line x:Name="StrikeLine"
+                  Stroke="{StaticResource ButtonColor}"
+                  StrokeThickness="7"
+                  StrokeStartLineCap="Round"
+                  StrokeEndLineCap="Round"
+                  Visibility="Hidden"/>
+            </Canvas>
+
+
+            <Grid x:Name="EndScreen"
+             Grid.RowSpan="2"
+             Background="{StaticResource BackgroundColor}"
+             Visibility="Hidden">
+                <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Center">
+                    <Image x:Name="WinnerImage"
+                           Height="145"
+                           Width="200"
+                           Source="Assets/X15.png"/>
+                    <TextBlock x:Name="ResultText"
+                               FontSize="25" 
+                               Foreground="#545454"
+                               FontFamily="TIMES NEW ROMAN"                                           
+                               Text="WINNER !"
+                               Margin="0,0,0,15" 
+                               HorizontalAlignment="Center"/>
+                    <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center">
+
+                    </StackPanel>
+
+                    <Button Style="{StaticResource RoundedButtonsNoMouseOver}"
+                        FontSize="34"
+                        Width="200"
+                        Height="55"
+                        Margin="0,20,0,0"                          
+                        Click="Button_Click">
+                        <Button.Content>
+                            <StackPanel Width="200">
+                                <TextBlock TextAlignment="Center" Text="Play Again" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+    </Viewbox>
+</Window>
